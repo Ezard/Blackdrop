@@ -27,7 +27,6 @@ public class Test : MonoBehaviour {
 	}
 
 	void OnMouseDrag() {
-		Debug.Log("Drag");
 		if (start != Vector3.zero && Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit)) {
 			if (Vector3.Distance(start, hit.point) > 1) {
 				hit.point = start + (hit.point - start).normalized;
