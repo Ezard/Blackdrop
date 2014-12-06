@@ -19,13 +19,19 @@ public class Screen : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (drop) {
-			if (transform.localPosition.y > 0) {
+			if (transform.localPosition.y > 0.05) {
 				transform.Translate (0, -10 * Time.deltaTime, 0);
 			} else {
-				GetComponent<Test>().enabled = true;
-				projectorLight.SetActive(true);
-				Debug.Log (projectorLight.activeSelf);
+				if (!GetComponent<Test>().enabled) {
+					GetComponent<Test>().enabled = true;
+					StartCoroutine(activateLight());
+				}
 			}
 		}
+	}
+
+	IEnumerator activateLight() {
+		yield return new WaitForSeconds(0.5f);
+		projectorLight.SetActive(true);
 	}
 }
