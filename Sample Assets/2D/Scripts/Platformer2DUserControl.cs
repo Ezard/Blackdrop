@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 
 [RequireComponent(typeof(PlatformerCharacter2D))]
 public class Platformer2DUserControl : MonoBehaviour 
@@ -39,4 +39,4 @@ public class Platformer2DUserControl : MonoBehaviour
         // Reset the jump input once it has been used.
 	    jump = false;
 	}
-}
+}*/
