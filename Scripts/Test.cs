@@ -19,15 +19,16 @@ public class Test : MonoBehaviour {
 	LineRenderer lr;
 
 	void OnMouseDown() {
-		if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
+		if (line != null && Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
 			start = hit.point;
 			lr = (GameObject.Instantiate (line, new Vector3 (), new Quaternion ()) as GameObject).GetComponent<LineRenderer> ();
 			lr.SetPosition (0, new Vector3(start.x, start.y, 0));
+			lr.SetPosition (1, new Vector3(start.x, start.y, 0));
 		}
 	}
 
 	void OnMouseDrag() {
-		if (start != Vector3.zero && Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit)) {
+		if (line != null && start != Vector3.zero && Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit)) {
 			if (Vector3.Distance(start, hit.point) > 1) {
 				hit.point = start + (hit.point - start).normalized;
 			}
@@ -36,7 +37,7 @@ public class Test : MonoBehaviour {
 	}
 
 	void OnMouseUp() {
-		if (start != Vector3.zero) {
+		if (line != null && start != Vector3.zero) {
 			lr.SetPosition (1, new Vector3(hit.point.x, hit.point.y, 0));
 			start = Vector3.zero;
 		}
