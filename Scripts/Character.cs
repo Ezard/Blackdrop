@@ -14,9 +14,7 @@ public class Character : MonoBehaviour
 	
 	Transform groundCheck;								// A position marking where to check if the player is grounded.
 	float groundedRadius = .2f;							// Radius of the overlap circle to determine if grounded
-	bool grounded = false;								// Whether or not the player is grounded.
-	Transform ceilingCheck;								// A position marking where to check for ceilings
-	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
+	bool grounded = false;								// Whether or not the player is grounded.					// Radius of the overlap circle to determine if the player can stand up
 	Animator anim;										// Reference to the player's animator component.
 	int jumpCount;
 
@@ -24,7 +22,6 @@ public class Character : MonoBehaviour
 	{
 		// Setting up references.
 		groundCheck = transform.Find("GroundCheck");
-		ceilingCheck = transform.Find("CeilingCheck");
 		anim = GetComponent<Animator>();
 	}
 
@@ -35,9 +32,6 @@ public class Character : MonoBehaviour
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundedRadius, whatIsGround);
 		anim.SetBool("Ground", grounded);
 		if (grounded) jumpCount = jumpCountMax;
-
-		// Set the vertical animation
-		anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
 	}
 
 
